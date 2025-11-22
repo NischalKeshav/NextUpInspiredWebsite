@@ -17,7 +17,11 @@
 <style>
 	nav {
 		display: flex;
-		
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
 		align-items: center;
 		justify-content: space-between;
 		background-color: white;
@@ -72,6 +76,14 @@
 		background-color: #2266aa;
 		cursor: pointer;
 		transform: rotateZ(360deg);
+	}
+	@media only screen and (max-width: 767px){
+		nav {
+			flex-direction: row;
+		}
+		ul {
+			display: none;
+		}
 	}
 </style>
 
