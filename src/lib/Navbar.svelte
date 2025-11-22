@@ -1,14 +1,78 @@
 <script>
-	import {Navlinks, Navlist } from '$lib/index.js'
+	import { Navlinks, Navlist } from '$lib/index.js';
+	import logo from '$lib/assets/NU.png';
 </script>
-
 <nav>
-<ul>
-{#each Navlist as ni, index}
-
-	<a href="google.com" >{ni}</a>
-	
-{/each}
-</ul>
+	<img src={logo} alt="Logo" class="logo" />
+	<ul>
+		{#each Navlist as navItem, index}
+			<li>
+				<a href={Navlinks[index]}>{navItem}</a>
+			</li>
+		{/each}
+	</ul>
+	<button>Donate</button>
 </nav>
+
+<style>
+	nav {
+		display: flex;
+		
+		align-items: center;
+		justify-content: space-between;
+		background-color: white;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	.logo {
+		height: 70px;
+		width: auto;
+	}
+
+	ul {
+		display: flex;
+		gap: 2rem;
+		width: 50%;
+		list-style: none;
+		margin: auto;
+		padding: 0;
+		justify-content: center;
+	}
+
+	li {
+		margin: 0;
+		transition: color 0.3s;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		transition: background-color 0.3s;
+		font-size: 1.125rem;
+		font-weight: 500;
+	}
+
+	li:hover {
+		color: #3388dd;
+	}
+	button {
+		background-color: #3388dd;
+		color: white;
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 16px;
+		transition: background-color 0.3s, transform 0.3s;
+		font-size: 1.125rem;
+		font-weight: 600;
+	}
+	button:hover {
+		background-color: #2266aa;
+		cursor: pointer;
+		transform: rotateZ(360deg);
+	}
+</style>
+
 
