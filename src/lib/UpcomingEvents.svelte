@@ -1,4 +1,5 @@
 <script>
+    // @ts-nocheck
     import EventCard from '$lib/EventCard.svelte';
 
     import img1 from '$lib/assets/stemactivities.jpg';
@@ -24,33 +25,71 @@
             image: img3
         }
     ]
+    let numEvents = $state(events.length);
     let currentEvent = $state(0);
-    let event = $state(events[currentEvent]);
+    let translateX = $state(0);
+    let isAnimating = $state(false);
+    let disableTransition = $state(false);
 
-    function nextEvent() {
-        currentEvent++;
-        event = events[currentEvent];
+    function getEvent(offset) {
+        return events[(currentEvent + offset + numEvents) % numEvents];
     }
-    function previousEvent() {
-        currentEvent--;
-        event = events[currentEvent];
+
+    const pushEvent = () => {
+        if (isAnimating) return;
+        isAnimating = true;
+        disableTransition = false;
+        
+        // Start the slide animation
+        translateX = -1;
+        
+        setTimeout(() => {
+            // First, disable transition
+            disableTransition = true;
+            
+            // Wait for the browser to apply the transition disable
+            requestAnimationFrame(() => {
+                // Now update position and content
+                currentEvent = (currentEvent + 1) % numEvents;
+                translateX = 0;
+                
+                // Wait another frame before re-enabling transitions
+                requestAnimationFrame(() => {
+                    disableTransition = false;
+                    isAnimating = false;
+                });
+            });
+        }, 600);
     }
 </script>
-
+<h1>Upcoming Events</h1>
 <div class="upcomingEvents">
-    <h2>Upcoming Events</h2>
-    <EventCard event={event} />
+    <div class="cards-container" style="transform: translateX(calc({translateX} * (80vw + 2rem))); transition: {disableTransition ? 'none' : 'transform 0.6s ease-in-out'}">
+        <EventCard event={getEvent(0)} onNext={pushEvent} />
+        <EventCard event={getEvent(1)} onNext={pushEvent} />
+        <EventCard event={getEvent(2)} onNext={pushEvent} />
+    </div>
 </div>
-
 <style>
     .upcomingEvents {
         position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        padding: 2rem 0;
     }
-    h2 {
+    
+    .cards-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+    
+    h1 {
         font-size: 4rem;
         font-weight: 600;
         text-align: center;
         margin-top: 2rem;
         color: #1A345B;
     }
+
 </style>

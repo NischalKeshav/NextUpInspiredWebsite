@@ -1,9 +1,10 @@
 <script>
-    let { event } = $props();
+    let { event, onNext } = $props();
 </script>
 
 <div class="eventCard">
     <img src={event.image} alt={event.title} />
+    <button class="nextButton" onclick={onNext}>→</button>
     <div class="content">
         <h3>{event.title}</h3>
         <p class="date">{event.date}</p>
@@ -15,10 +16,13 @@
     .eventCard {
         position: relative;
         border-radius: 16px;
-        border: 4px solid white;
+
         height: 70vh;
         width: 80vw;
+        min-width: 80vw;
         overflow: hidden;
+        flex-shrink: 0;
+        scroll-snap-align: start;
     }
     img {
         width: 100%;
@@ -54,5 +58,28 @@
         font-size: 1rem;
         font-weight: 300;
         margin: 0;
+    }
+    .nextButton {
+        position: absolute;
+        top: 30vh;
+        right: 2rem;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #1A345B;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .nextButton:hover {
+        color: white;
+        transform: scale(1.1);
     }
 </style>
