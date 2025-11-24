@@ -16,13 +16,12 @@
     .eventCard {
         position: relative;
         border-radius: 16px;
-
         height: 70vh;
         width: 80vw;
         min-width: 80vw;
         overflow: hidden;
         flex-shrink: 0;
-        scroll-snap-align: start;
+        margin-left: 3vw;
     }
     img {
         width: 100%;
@@ -71,7 +70,6 @@
         height: 50px;
         border-radius: 50%;
         font-size: 1.5rem;
-        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
