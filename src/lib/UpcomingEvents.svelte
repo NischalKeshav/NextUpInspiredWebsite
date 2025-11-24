@@ -1,4 +1,6 @@
 <script>
+    import EventCard from '$lib/EventCard.svelte';
+
     import img1 from '$lib/assets/stemactivities.jpg';
     import img2 from '$lib/assets/stemactivities2.jpg';
     import img3 from '$lib/assets/stemactivities3.jpg';
@@ -37,6 +39,7 @@
 
 <div class="upcomingEvents">
     <h2>Upcoming Events</h2>
+    <EventCard event={event} />
 </div>
 
 <style>
