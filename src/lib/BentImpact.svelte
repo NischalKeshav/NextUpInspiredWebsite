@@ -15,6 +15,7 @@
         width: 100%;
     }
     h2 {
+        margin: 2.25rem;
         font-size: 1.5rem;
         font-weight: 300 ;
         color: #1A345B ;
