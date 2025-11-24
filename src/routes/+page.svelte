@@ -4,6 +4,7 @@
 	import Impact from '$lib/Impact.svelte'
 	import Sponsors from '$lib/Sponsors.svelte'
 	import UpcomingEvents from '$lib/UpcomingEvents.svelte'
+	import Footer from '$lib/footer.svelte'
 </script>
 
 
@@ -12,3 +13,4 @@
 <Impact></Impact>
 <UpcomingEvents></UpcomingEvents>
 <Sponsors></Sponsors>	
+<Footer></Footer>
